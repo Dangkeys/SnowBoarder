@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetector : MonoBehaviour
 {
+    [SerializeField] ParticleSystem loseEffect;
     [SerializeField] float loadDelay = 1f;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Ground"))
         {
-            Debug.Log("You lose");
+            loseEffect.Play();
             Invoke("ReloadScene", loadDelay);
         }
-    }
 
+    }
     private void ReloadScene()
     {
         SceneManager.LoadScene(0);
