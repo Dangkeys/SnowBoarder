@@ -16,9 +16,9 @@ public class CrashDetector : MonoBehaviour
             if (!hasCrashed)
             {
                 FindObjectOfType<PlayerController>().DisablePlayerMovement();
+                loseEffect.Play();
                 hasCrashed = true;
             }
-            loseEffect.Play();
             Invoke("ReloadScene", loadDelay);
             GetComponent<AudioSource>().PlayOneShot(crashSFX);
         }
